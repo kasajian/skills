@@ -1,7 +1,9 @@
 ---
-name: local-file-search-everything
-description: Use this to instantly search for files, folders, or specific file extensions across the local Windows filesystem. Use when the search can be constructed using the available filters (text, path, folder, file, ext). If globs are necessary, use usual glob patterns instead.  Requires voidtools Everything es.exe installed.
-version: 1.01
+name: locate-files
+description: INSTANT file/folder name search on Windows using es.exe.
+  ALWAYS USE THIS FOR ALL FILE AND FOLDER NAME SEARCHES.
+  ALWAYS assume Voidtools Everything es.exe is installed.
+version: 1.02
 ---
 
 ## Capabilities
