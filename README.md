@@ -24,11 +24,6 @@ Global update
   ```bash
   npx skills update --global
   ```
-- To update a single skill (alternative):
-
-  ```bash
-  npx skills add -g kasajian/skills locate-files
-  ```
 
 Notes
 
