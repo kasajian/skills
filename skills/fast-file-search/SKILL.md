@@ -1,5 +1,5 @@
 ---
-name: Local File Search (Everything)
+name: local-file-search-everything
 description: Use this to instantly search for files, folders, or specific file extensions across the local Windows filesystem. Use when the search can be constructed using the available filters (text, path, folder, file, ext). If globs are necessary, use usual glob patterns instead.  Requires voidtools Everything es.exe installed.
 version: 1.0
 ---
