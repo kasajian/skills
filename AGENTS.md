@@ -46,7 +46,3 @@ Agent responsibilities
 - When uncertain about phrasing, prefer brevity and clarity. Use imperative install instructions exactly as shown above.
 - If adding multiple skills in one change, add entries for all new skills in README.md.
 - When asked to make commits or push changes, always request explicit user permission first.
-
-Based on this conversation (2026-05-23):
-- The repository currently contains one skill: `locate-files`.
-- When future skills are added, agents must update README.md before committing the skill code.
