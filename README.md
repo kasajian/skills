@@ -17,6 +17,45 @@ Available skills
     npx skills update locate-files --global
     ```
 
+- work.handover
+  - Description: Write a handover document so a future session can pick up where this one left off.
+  - Install:
+
+    ```bash
+    npx skills add -g kasajian/skills work.handover
+    ```
+  - Update (per-skill):
+
+    ```bash
+    npx skills update work.handover --global
+    ```
+
+- work.name-session
+  - Description: Generate a short title (<=10 words) summarizing the current session's accomplishments for use as a session name.
+  - Install:
+
+    ```bash
+    npx skills add -g kasajian/skills work.name-session
+    ```
+  - Update (per-skill):
+
+    ```bash
+    npx skills update work.name-session --global
+    ```
+
+- work.persist
+  - Description: Summarize the current session and persist technical/architectural reasoning to the project's documentation.
+  - Install:
+
+    ```bash
+    npx skills add -g kasajian/skills work.persist
+    ```
+  - Update (per-skill):
+
+    ```bash
+    npx skills update work.persist --global
+    ```
+
 Global update
 
 - To update all installed skills globally:
