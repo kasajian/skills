@@ -4,18 +4,19 @@ This repository contains reusable "skills" that can be installed with the `skill
 
 Available skills
 
-- locate-files
-  - Description: Fast file/folder name search on Windows using Voidtools Everything (es.exe). Use this to quickly find files or folders by name.
-  - Install:
+To install all skills at once:
 
-    ```bash
-    npx skills add -g kasajian/skills locate-files
-    ```
-  - Update (per-skill):
+```bash
+npx skills add kasajian/skills
+```
 
-    ```bash
-    npx skills update locate-files --global
-    ```
+To update all installed skills globally:
+
+```bash
+npx skills update --global
+```
+
+Or install individual skills:
 
 - work.handover
   - Description: Write a handover document so a future session can pick up where this one left off.
@@ -28,19 +29,6 @@ Available skills
 
     ```bash
     npx skills update work.handover --global
-    ```
-
-- work.name-session
-  - Description: Generate a short title (<=10 words) summarizing the current session's accomplishments for use as a session name.
-  - Install:
-
-    ```bash
-    npx skills add -g kasajian/skills work.name-session
-    ```
-  - Update (per-skill):
-
-    ```bash
-    npx skills update work.name-session --global
     ```
 
 - work.persist
@@ -56,13 +44,31 @@ Available skills
     npx skills update work.persist --global
     ```
 
-Global update
+- work.name-session
+  - Description: Generate a short title (<=10 words) summarizing the current session's accomplishments for use as a session name.
+  - Install:
 
-- To update all installed skills globally:
+    ```bash
+    npx skills add -g kasajian/skills work.name-session
+    ```
+  - Update (per-skill):
 
-  ```bash
-  npx skills update --global
-  ```
+    ```bash
+    npx skills update work.name-session --global
+    ```
+
+- locate-files
+  - Description: Fast file/folder name search on Windows using Voidtools Everything (es.exe). Use this to quickly find files or folders by name.
+  - Install:
+
+    ```bash
+    npx skills add -g kasajian/skills locate-files
+    ```
+  - Update (per-skill):
+
+    ```bash
+    npx skills update locate-files --global
+    ```
 
 Notes
 
