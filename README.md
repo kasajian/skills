@@ -18,19 +18,6 @@ npx skills update --global
 
 Or install individual skills:
 
-- work.handover
-  - Description: Write a handover document so a future session can pick up where this one left off.
-  - Install:
-
-    ```bash
-    npx skills add -g kasajian/skills work.handover
-    ```
-  - Update (per-skill):
-
-    ```bash
-    npx skills update work.handover --global
-    ```
-
 - work.persist
   - Description: Summarize the current session and persist technical/architectural reasoning to the project's documentation.
   - Install:
@@ -42,6 +29,19 @@ Or install individual skills:
 
     ```bash
     npx skills update work.persist --global
+    ```
+
+- work.handover
+  - Description: Write a handover document so a future session can pick up where this one left off.
+  - Install:
+
+    ```bash
+    npx skills add -g kasajian/skills work.handover
+    ```
+  - Update (per-skill):
+
+    ```bash
+    npx skills update work.handover --global
     ```
 
 - work.name-session
