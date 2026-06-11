@@ -1,4 +1,4 @@
-# kasajian/skills
+# skills
 
 This repository contains reusable "skills" that can be installed with the `skills` CLI.
 
