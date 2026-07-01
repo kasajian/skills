@@ -1,5 +1,5 @@
 ---
-name: work.handover
+name: work-handover
 description: Write a handover document so a future session can pick up where this one left off.
 argument-hint: "What project are you handing off? (e.g., 'for project login-refactor')"
 ---
@@ -79,9 +79,9 @@ The template above is a guide, not a straitjacket. Tailor sections to what's act
 
 ### 4. Suggest work-persist
 
-After writing the handover, suggest that the user invoke `work.persist` to capture any architectural decisions or user preferences learned during the session. Frame it as optional:
+After writing the handover, suggest that the user invoke `work-persist` to capture any architectural decisions or user preferences learned during the session. Frame it as optional:
 
-> "If you made any design decisions or learned something about how this project should work, consider running `work.persist` to record them for future sessions."
+> "If you made any design decisions or learned something about how this project should work, consider running `work-persist` to record them for future sessions."
 
 ## Edge cases
 
@@ -97,7 +97,7 @@ Do not modify it. Preserve existing task data.
 ## What this skill does NOT do
 
 - Does NOT persist architectural decisions or user preferences (that is `work-persist`).
-- Does NOT scaffold project conventions (`docs/DECISIONS.md`, etc.) — that is `work.setup`.
+- Does NOT scaffold project conventions (`docs/DECISIONS.md`, etc.) — that is `work-setup`.
 - Does NOT create agent-instruction files (AGENTS.md, CLAUDE.md, etc.).
 - Does NOT commit or push anything to git.
 

@@ -1,5 +1,5 @@
 ---
-name: work.persist
+name: work-persist
 description: Summarizes the current session and persists technical/architectural reasoning to the project's documentation.
 argument-hint: none
 ---
@@ -10,7 +10,7 @@ Summarize the architectural decisions, technical reasoning, and project mandates
 
 ## When to use
 
-Mid-session after making a design decision or learning something about how the project should work. Also invoked automatically as part of `work.handover` (suggested, not forced).
+Mid-session after making a design decision or learning something about how the project should work. Also invoked automatically as part of `work-handover` (suggested, not forced).
 
 ## Guidelines
 
@@ -67,6 +67,6 @@ Agent: "I'll update ARCHITECTURE.md to document the new library integration patt
 
 ## What this skill does NOT do
 
-- Does NOT write a handover document (that is `work.handover`).
-- Does NOT create project directories or tasks.md (that is `work.setup`).
+- Does NOT write a handover document (that is `work-handover`).
+- Does NOT create project directories or tasks.md (that is `work-setup`).
 - Does NOT commit or push anything to git.

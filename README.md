@@ -18,43 +18,56 @@ npx skills update --global
 
 Or install individual skills:
 
-- work.persist
-  - Description: Summarize the current session and persist technical/architectural reasoning to the project's documentation.
-  - Install:
-
-    ```bash
-    npx skills add -g kasajian/skills work.persist
-    ```
-  - Update (per-skill):
-
-    ```bash
-    npx skills update work.persist --global
-    ```
-
-- work.handover
+- work-handover
   - Description: Write a handover document so a future session can pick up where this one left off.
   - Install:
 
     ```bash
-    npx skills add -g kasajian/skills work.handover
+    npx skills add -g kasajian/skills work-handover
     ```
   - Update (per-skill):
 
     ```bash
-    npx skills update work.handover --global
+    npx skills update work-handover --global
     ```
 
-- work.name-session
+- work-persist
+  - Description: Summarize the current session and persist technical/architectural reasoning to the project's documentation.
+  - Install:
+
+    ```bash
+    npx skills add -g kasajian/skills work-persist
+    ```
+  - Update (per-skill):
+
+    ```bash
+    npx skills update work-persist --global
+    ```
+
+- work-namesession
   - Description: Generate a short title (<=10 words) summarizing the current session's accomplishments for use as a session name.
   - Install:
 
     ```bash
-    npx skills add -g kasajian/skills work.name-session
+    npx skills add -g kasajian/skills work-namesession
     ```
   - Update (per-skill):
 
     ```bash
-    npx skills update work.name-session --global
+    npx skills update work-namesession --global
+    ```
+
+- work-setup
+  - Description: Create a project workspace for organizing work across sessions.
+  - Install:
+
+    ```bash
+    npx skills add -g kasajian/skills work-setup
+    ```
+  - Update (per-skill):
+
+    ```bash
+    npx skills update work-setup --global
     ```
 
 - locate-files

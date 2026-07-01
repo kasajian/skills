@@ -1,10 +1,10 @@
 ---
-name: work.name-session
+name: work-namesession
 description: Generate a short title (<=10 words) summarizing the current session's accomplishments for use as a session name.
 argument-hint: none
 ---
 
-# work-name-session
+# work-namesession
 
 Generate a concise session title from the conversation history. Max ~10 words, abbreviated where obvious. Focus on what was actually built/designed/audited — not process.
 
