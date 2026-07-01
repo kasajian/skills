@@ -44,19 +44,6 @@ Or install individual skills:
     npx skills update work-persist --global
     ```
 
-- work-namesession
-  - Description: Generate a short title (<=10 words) summarizing the current session's accomplishments for use as a session name.
-  - Install:
-
-    ```bash
-    npx skills add -g kasajian/skills work-namesession
-    ```
-  - Update (per-skill):
-
-    ```bash
-    npx skills update work-namesession --global
-    ```
-
 - work-setup
   - Description: Create a project workspace for organizing work across sessions.
   - Install:
@@ -68,6 +55,19 @@ Or install individual skills:
 
     ```bash
     npx skills update work-setup --global
+    ```
+
+- work-namesession
+  - Description: Generate a short title (<=10 words) summarizing the current session's accomplishments for use as a session name.
+  - Install:
+
+    ```bash
+    npx skills add -g kasajian/skills work-namesession
+    ```
+  - Update (per-skill):
+
+    ```bash
+    npx skills update work-namesession --global
     ```
 
 - locate-files
