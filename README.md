@@ -7,7 +7,7 @@ Available skills
 To install all skills at once:
 
 ```bash
-npx skills add kasajian/skills
+npx skills add -g kasajian/skills
 ```
 
 To update all installed skills globally:
