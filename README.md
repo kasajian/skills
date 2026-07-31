@@ -83,6 +83,19 @@ Or install individual skills:
     npx skills update locate-files --global
     ```
 
+- smart-commit
+  - Description: Generate a Conventional Commits message from staged changes, falling back to all unstaged/untracked changes when the staging area is empty.
+  - Install:
+
+    ```bash
+    npx skills add -g kasajian/skills smart-commit
+    ```
+  - Update (per-skill):
+
+    ```bash
+    npx skills update smart-commit --global
+    ```
+
 Notes
 
 - The install command above assumes the `skills` CLI is available via npx and that you want a global install.
