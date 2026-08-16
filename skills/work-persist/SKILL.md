@@ -1,6 +1,6 @@
 ---
 name: work-persist
-description: Summarizes the current session and persists technical/architectural reasoning to the project's documentation.
+description: Persist/summarizing the current session's technical constraints, and user preferences into the repo's documentation (ARCHITECTURE.md, AGENTS.md, README.md). Use mid-session after a design decision, when the session has learned something about how the project should work, or when work-handover suggests it. Writes durable repo docs, unlike work-handover which writes the session handover.
 argument-hint: none
 ---
 
@@ -16,10 +16,10 @@ Mid-session after making a design decision or learning something about how the p
 
 * **Analyze Session History:** Review the full conversation history. Extract key architectural decisions, design patterns, and technical trade-offs.
 * **Identify "Why Not":** Document "Rejected Alternatives" and the specific reasons they were not chosen to prevent future agents from retracing settled paths.
-* **Identify Nuance:** Capture specific user preferences regarding technology choices, coding style, jargon avoidance, or philosophical mandates (e.g., privacy first).
+* **Identify Nuance and Evident Patterns:** Capture specific user preferences regarding technology choices, coding style, jargon avoidance, or philosophical mandates (e.g., privacy first).
 * **Infer User Philosophy:** Beyond explicit instructions, analyze the patterns in the user's feedback, the types of alternatives they reject, and the qualities they praise. Infer the underlying engineering philosophy (e.g., radical simplicity, skepticism of abstraction, or priority on verification) to help future agents align with the user's mental model.
 * **Formulate Agent Advice:** Translate session learnings into concrete, actionable advice for future agents. Capture the "vibe," operational expectations, and specific "Do's and Don'ts" that are unique to this user's collaboration style.
-* **Survey Documentation Structure:** Examine the repository for existing documentation files (such as ARCHITECTURE.md, DESIGN.md, README.md, AGENTS.md, etc.) to understand where different types of information belong.
+* **Survey Documentation Structure:** Examine the repository for existing documentation files (ARCHITECTURE.md, DESIGN.md, README.md, AGENTS.md, etc.) and follow aliases (e.g., AGENTS.md pointing to .github/copilot-instructions.md). Use the Decision Framework below to decide where each item belongs.
 * **Read Authoritative Sources:** Identify the most appropriate files for different types of information:
   - Architectural decisions and design patterns → ARCHITECTURE.md or similar
   - Technical constraints and invariants → ARCHITECTURE.md or similar  
@@ -31,6 +31,7 @@ Mid-session after making a design decision or learning something about how the p
   - Update evolved logic or add incremental context as needed
   - Maintain the existing style and structure of each file
   - Never create duplicate information across multiple files
+* **Redact secrets:** Never persist API keys, tokens, passwords, or PII into documentation. If a secret surfaced in the session, reference where credentials live — never their values.
 * **Maintain Constraints:** Ensure any instructions regarding the prohibition of agent-specific configuration files are preserved and respected.
 
 ## Decision Framework

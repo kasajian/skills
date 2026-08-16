@@ -1,6 +1,6 @@
 ---
 name: work-setup
-description: Create a project workspace for organizing work across sessions.
+description: Create a project workspace (projects/NAME/) under the repo root so you and future agents have a place to organize work across sessions. Run once at the start of a new unit of work — a feature, bug, refactor, or any multi-step task. Sets up the folder that work-handover and work-persist later write into.
 argument-hint: "What are you working on? (e.g., 'for project login-refactor')"
 ---
 

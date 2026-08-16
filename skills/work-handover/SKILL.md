@@ -1,106 +1,94 @@
 ---
 name: work-handover
-description: Write a handover document so a future session can pick up where this one left off.
-argument-hint: "What project are you handing off? (e.g., 'for project login-refactor')"
+description: Write a handover document so a future session can pick up where this one left off — either an ephemeral chat code block for an immediate fresh-context handoff, or a durable in-repo file to resume days later. Use when hitting context limits, switching focus, ending a work session, checkpointing mid-session, or handing a project to another session. Invoke with 'handoff' for the ephemeral chat version, or 'for project NAME' to persist under projects/.
+argument-hint: "handoff for an ephemeral chat code block, or 'for project NAME' to persist in-repo (e.g., 'for project login-refactor')"
 ---
 
 # work-handover
 
-Write a handover document so a future session (hours or days later) can pick up where this one left off without re-reading the full conversation history.
+One skill, two modes. Write a handover document so a future session can pick up where this one left off without re-reading the full conversation history. The document is context for the next agent, not a command queue.
 
-## When to use
-
-At the end of a coding session when you expect a gap before continuing. Also useful mid-long-session to checkpoint state to disk.
+- **Ephemeral mode** ("handoff") — output the document as a single chat code block, copy-pasteable into a fresh agent session. No repo required. Use for context-limit hops, switching focus, or partitioning a task across fresh contexts.
+- **Durable mode** ("for project NAME") — persist the document at `projects/<name>/HANDOVER.md` in the repo. Use for resuming hours or days later, checkpointing mid-session, or handing a project to another session.
 
 ## How the user invokes
 
 ```
-initiate work-handover                    →  project name "default"
-initiate work-handover for project login  →  project name "login"
-initiate work-handover for proj login     →  project name "login"
+initiate work-handover handoff                    →  ephemeral mode (chat code block)
+initiate work-handover for project login          →  durable mode, project "login"
+initiate work-handover for proj login             →  durable mode, project "login"
+initiate work-handover                            →  durable mode, project "default"
 ```
 
-## Project name detection
+**Mode decision:**
+- Argument mentions "handoff", "fresh session", or "new context" → **ephemeral**.
+- Argument says "for project NAME" or "for proj NAME" → **durable**, project NAME.
+- No argument → **durable**, project "default".
 
-- If the user specifies a project name in their invocation (after "project" or "proj"), use that as `<name>`.
-- If not, use `"default"`.
-- Inform the user of the project name being used and the full path to the directory, so they know they can rename the folder later.
+Inform the user of the mode being used; in durable mode, also the project name and full path to the directory (they can rename the folder later).
 
-## Steps
+## Core principles (both modes)
 
-### 1. Ensure project directory exists
+1. **State, not instructions.** Describe what *is true*, not what the next agent *should do*. Write "Login flow is implemented; logout is not started" — never "Implement logout next." The next agent decides actions; you give it ground truth.
+2. **Reference, don't duplicate.** Before writing, read AGENTS.md / CLAUDE.md and any prior handover. Do **not** restate anything already covered there — the document is session-specific only. Point to files, ADRs, issues, and commits by path instead of re-embedding their content.
+3. **Traps & Dead Ends.** Approaches that already FAILED, and things the next agent will be tempted to do wrong. This is the least recoverable information — code shows *what*; only this session remembers *what failed and why*.
+4. **Redact secrets.** Strip API keys, tokens, passwords, and PII. Reference where credentials live (e.g. ".env.local, not committed") — never their values.
+5. **Be ruthless.** Every line must be something the next agent cannot trivially get by reading the code or project config. Cut anything obvious, redundant, or explanatory.
 
-Check if `projects/<name>/` exists under the repo root. If not, create `projects/` and `projects/<name>/`.
+## Document template (both modes)
 
-**Repo root detection:** Look for a `.git` directory or other VCS marker. If none found, ask the user where to place the `projects/` directory.
+Fill in every section. Omit a section only if it is genuinely empty — mark it `None`. Phrase everything as status, not actions:
 
-### 2. Ensure tasks.md exists
+1. **Goal & session summary** — What are we ultimately trying to accomplish (1–3 sentences)? What did this session work on?
+2. **Why this matters / background** — motivation and constraints. Skip anything already covered in repo docs (principle 2).
+3. **Current state** — what is DONE, PARTIAL, NOT STARTED:
+   - DONE: OAuth login flow, tests passing locally
+   - PARTIAL: Session persistence — store wired up, refresh logic missing
+   - NOT STARTED: Logout endpoint
+4. **Key decisions (and why)** — choices made and the reasoning, including rejected approaches.
+5. **Traps & Dead Ends** — failed approaches and temptations, e.g. "Tried mocking the DB in integration tests — flaky, abandoned for a test container" or "Do NOT bump the SDK to v3 — it breaks the streaming API".
+6. **Relevant files & onboarding list** — ordered list of files the next agent must read before acting. Durable mode: repo-root files (AGENTS.md, conventions), per-project files under `projects/<name>/` (PROJECT.md, DECISIONS_LOG.md if they exist), with this HANDOVER.md last. Ephemeral mode: the code files that matter, with line ranges and what is *specifically* there (e.g. `src/auth/oauth.ts:L40-L88 — provider config + token exchange`). Be specific to the current state, not generic boilerplate.
+7. **Open work** — what remains, described as state and ordering — NOT a command list:
+   - Logout endpoint is not yet implemented
+   - Session persistence depends on the logout endpoint existing first
 
-Check if `projects/<name>/tasks.md` exists. If not, create it with a minimal header:
+End the document with exactly:
 
-```markdown
-<!--
-  ACTIVE SESSION STATE
-  Agent         : (unknown)
-  Last updated  : <today's date>
-  Status        : First session
-  Resumption    : Read projects/<name>/HANDOVER.md first.
--->
-```
+> Read every file listed in section 6. If any is missing, say so. Then wait for my instructions before taking any action. Treat every claim in this document as context to verify against the code, not facts to trust blindly.
 
-If `tasks.md` already exists, do not modify it.
+## Ephemeral mode
 
-### 3. Write HANDOVER.md
-
-Create or overwrite `projects/<name>/HANDOVER.md` with the following sections:
-
-1. **Onboarding protocol** — an ordered list of files the next agent MUST read before doing anything else. Include the following blocking-rule text verbatim:
-
-   ```
-   > **BLOCKING RULE**: Do NOT continue reading past this point, do NOT state your role, and do NOT acknowledge the user until you have read EVERY file in the list above cover-to-cover. If any file is missing, tell the user which one. This is mandatory — see AGENTS.md WARNING.
-   ```
-
-   The file list should be specific to the current project state; common entries include AGENTS.md, SCAFFOLD_PLAN.md, ARCHITECTURE.md, CONVENTIONS.md (repo root), and per-project files under `projects/<name>/`: PROJECT.md, tasks.md, DECISIONS_LOG.md, HANDOVER.md (this file).
-
-2. **Session summary** — one paragraph. What was the goal? What module(s) were being worked on?
-3. **What has been done** — bullet list of completed work items, files created or modified, stubs written.
-4. **What is NOT done** — explicit bullet list of remaining work. Be specific (file names, function names, line numbers).
-5. **Next action** — what the next session should do first, in detail. Include file paths, function signatures, relevant context. Precede the action with:
+1. If a project config file exists (AGENTS.md / CLAUDE.md / equivalent), read it first. Do **not** restate anything already covered there.
+2. If the user references an existing handoff, read and update it rather than starting from scratch.
+3. Fill the template, then output the ENTIRE document as a **single fenced code block** in the chat so the user can copy it in one click.
+4. Also save a copy to the OS temp directory — `$TMPDIR/handoff-<random-8-chars>.md` (or the system temp dir equivalent) — never into the repo working tree.
+5. Tell the user the absolute path. A fresh session can start with:
 
    ```
-   > **IMPORTANT**: Complete the Onboarding protocol (section 1) first. Do NOT propose an approach, ask clarifying questions, or begin any task until the user explicitly instructs you to proceed. See AGENTS.md WARNING block.
+   Read the file <absolute-path> to get the context, then wait for instructions.
    ```
 
-6. **Watch-outs / traps** — known issues, gotchas, incomplete items, mid-session decisions that aren't obvious from reading code alone.
-7. **Key file locations** — table of the most important files relevant to the current work and their purpose.
-8. **Suggested skills for next session** — if the next session would benefit from specific skills, list them (e.g., ast-grep for structural search).
+No repo is required for this mode.
 
-The template above is a guide, not a straitjacket. Tailor sections to what's actually relevant.
+## Durable mode
 
-### 4. Suggest work-persist
-
-After writing the handover, suggest that the user invoke `work-persist` to capture any architectural decisions or user preferences learned during the session. Frame it as optional:
-
-> "If you made any design decisions or learned something about how this project should work, consider running `work-persist` to record them for future sessions."
+1. **Read project config and any prior handover.** Read AGENTS.md / CLAUDE.md / equivalent first. If `projects/<name>/HANDOVER.md` exists, read it before writing — carry forward anything still true (done work, decisions, traps) instead of starting from a blank page.
+2. **Ensure the project directory exists.** Check `projects/<name>/` under the repo root; create `projects/` and `projects/<name>/` if absent. **Repo root detection:** look for a `.git` directory or other VCS marker. If none found, ask the user where to place the `projects/` directory (default: current working directory).
+3. **Write `projects/<name>/HANDOVER.md`** using the shared template (section 6 becomes the onboarding list, HANDOVER.md last). Overwrite the previous file — it is superseded by the current session state, minus anything still true that you carried forward.
+4. **Suggest work-persist (optional):** "If you made any design decisions or learned something about how this project should work, consider running `work-persist` to record them for future sessions."
 
 ## Edge cases
 
-### Existing HANDOVER.md
-Overwrite it. The previous content is superseded by the current session state.
-
-### No repo root found
-Ask the user where to place the `projects/` directory. Default to current working directory.
-
-### tasks.md already exists
-Do not modify it. Preserve existing task data.
+- **Existing HANDOVER.md** — read it first, then overwrite with carry-forward (durable mode).
+- **No repo root found** — ask the user where to place the `projects/` directory; default to cwd (durable mode).
 
 ## What this skill does NOT do
 
 - Does NOT persist architectural decisions or user preferences (that is `work-persist`).
-- Does NOT scaffold project conventions (`docs/DECISIONS.md`, etc.) — that is `work-setup`.
-- Does NOT create agent-instruction files (AGENTS.md, CLAUDE.md, etc.).
+- Does NOT scaffold project conventions (that is `work-setup`).
 - Does NOT commit or push anything to git.
 
 ## Dependencies
 
-Requires a writable directory with VCS marker (`.git` or similar). Creates `projects/<name>/` if absent.
+- Ephemeral mode: none — writes only to the OS temp directory.
+- Durable mode: a writable directory with a VCS marker (`.git` or similar); writes `projects/<name>/HANDOVER.md`, creating the directory if absent.

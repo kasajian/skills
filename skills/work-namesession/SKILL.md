@@ -1,6 +1,6 @@
 ---
 name: work-namesession
-description: Generate a short title (<=10 words) summarizing the current session's accomplishments for use as a session name.
+description: Generate a short title (at most 10 words) summarizing the current session's accomplishments, for use as a session name. Use at the end of a session or when the user asks to name the session, including via /name session.
 argument-hint: none
 ---
 
