@@ -25,8 +25,14 @@ Execute the following pipeline sequentially when this skill is invoked:
    - **Scenario B (Staging Area is Empty)**: If the previous command yields an exit status of 0, extract context across the entire active working tree. Execute `git diff HEAD` for tracked modifications, and execute `git status --porcelain` to identify any untracked or newly introduced files.
 4. **Draft the Commit Message**:
    - Write a clear, descriptive message strictly matching the [Conventional Commits](https://conventionalcommits.org) specification using the active context.
-   - Structure format: `<type>(<scope>): <short description>` followed by a concise body if the change complexity warrants it.
-   - Ensure the description is written in the imperative mood, present tense, and limits the summary line length.
+   - Structure format: `<type>[optional scope]: <short description>` followed by a concise body and footer(s) if change complexity or breaking changes warrant it.
+   - **Allowed Types**: Use only `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`.
+   - **Scope Derivation**: Derive scope from the primary domain, module, or component name (e.g., `auth`, `api`, `cli`, `config`). Omit the scope if changes span multiple unrelated areas or are repository-wide. Do not use file paths or generic terms (e.g., `code`, `files`).
+   - **Breaking Changes**:
+     - Append `!` after the type/scope (e.g., `feat(auth)!: replace session tokens with jwt` or `refactor!: overhaul config structure`).
+     - Include a `BREAKING CHANGE: <explanation>` footer describing what broke and migration requirements.
+   - **Secret Sanitization**: Never echo credentials, tokens, private keys, or raw secrets detected in the diff into the commit message; describe such changes abstractly.
+   - Ensure the description is in the imperative mood, present tense, and limits the summary line length (<72 characters).
 
 ## Output Format
 - Print the final formatted commit message directly to the standard output buffer.
