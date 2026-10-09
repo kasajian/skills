@@ -21,17 +21,17 @@ Mid-session after making a design decision or learning something about how the p
 * **Formulate Agent Advice:** Translate session learnings into concrete, actionable advice for future agents. Capture the "vibe," operational expectations, and specific "Do's and Don'ts" that are unique to this user's collaboration style.
 * **Survey Documentation Structure:** Examine the repository for existing documentation files (ARCHITECTURE.md, DESIGN.md, README.md, AGENTS.md, etc.) and follow aliases (e.g., AGENTS.md pointing to .github/copilot-instructions.md). Use the Decision Framework below to decide where each item belongs.
 * **Read Authoritative Sources:** Identify the most appropriate files for different types of information:
-  - Architectural decisions and design patterns → ARCHITECTURE.md or similar
-  - Technical constraints and invariants → ARCHITECTURE.md or similar  
-  - Agent-specific guidance and usage instructions → AGENTS.md or equivalent (CLAUDE.md, .cursorrules, .github/copilot-instructions.md, etc.)
-  - General project overview → README.md
+  - Architectural decisions and design patterns -> ARCHITECTURE.md or similar
+  - Technical constraints and invariants -> ARCHITECTURE.md or similar  
+  - Agent-specific guidance and usage instructions -> AGENTS.md or equivalent (CLAUDE.md, .cursorrules, .github/copilot-instructions.md, etc.)
+  - General project overview -> README.md
   - Follow references when files alias each other (e.g., AGENTS.md points to .github/copilot-instructions.md)
 * **Surgical Synthesis:** Update only the appropriate files with new information. When updating existing documentation:
   - Merge new context without duplicating existing content
   - Update evolved logic or add incremental context as needed
   - Maintain the existing style and structure of each file
   - Never create duplicate information across multiple files
-* **Redact secrets:** Never persist API keys, tokens, passwords, or PII into documentation. If a secret surfaced in the session, reference where credentials live — never their values.
+* **Redact secrets:** Never persist API keys, tokens, passwords, or PII into documentation. If a secret surfaced in the session, reference where credentials live - never their values.
 * **Maintain Constraints:** Ensure any instructions regarding the prohibition of agent-specific configuration files are preserved and respected.
 
 ## Decision Framework
@@ -39,16 +39,16 @@ Mid-session after making a design decision or learning something about how the p
 When deciding where to persist information:
 
 1. **Architecture/Design Decisions** (how the system works, key patterns, structural choices):
-   → Update ARCHITECTURE.md or equivalent (e.g., docs/DECISIONS.md)
+   -> Update ARCHITECTURE.md or equivalent (e.g., docs/DECISIONS.md)
 
 2. **Technical Constraints/Mandates** (what must never be changed, hard requirements):
-   → Update ARCHITECTURE.md or equivalent
+   -> Update ARCHITECTURE.md or equivalent
 
 3. **Agent Guidance** (how agents should behave, what tools to use, workflow instructions, inferred user philosophy, and collaboration "vibe"):
-   → Update AGENTS.md or equivalent agent instructions file
+   -> Update AGENTS.md or equivalent agent instructions file
 
 4. **User/Project Overview** (what the project is, how to build/run, general info):
-   → Update README.md or equivalent
+   -> Update README.md or equivalent
 
 ## Addressing uncertainty
 

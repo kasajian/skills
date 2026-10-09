@@ -1,6 +1,6 @@
 ---
 name: work-setup
-description: Create a project workspace (projects/NAME/) under the repo root so you and future agents have a place to organize work across sessions. Run once at the start of a new unit of work — a feature, bug, refactor, or any multi-step task. Sets up the folder that work-handover and work-persist later write into.
+description: Create a project workspace (projects/NAME/) under the repo root so you and future agents have a place to organize work across sessions. Run once at the start of a new unit of work - a feature, bug, refactor, or any multi-step task. Sets up the folder that work-handover and work-persist later write into.
 argument-hint: "What are you working on? (e.g., 'for project login-refactor')"
 ---
 
@@ -10,14 +10,14 @@ Create a project workspace so you and future agents have a place to track tasks 
 
 ## When to use
 
-At the start of a new unit of work — a feature, bug, user story, refactoring, or any multi-step task. Run once. If the project already exists, this is a no-op.
+At the start of a new unit of work - a feature, bug, user story, refactoring, or any multi-step task. Run once. If the project already exists, this is a no-op.
 
 ## How the user invokes
 
 ```
-initiate work-setup                     →  project name "default"
-initiate work-setup for project login   →  project name "login"
-initiate work-setup for proj login      →  project name "login"
+initiate work-setup                     ->  project name "default"
+initiate work-setup for project login   ->  project name "login"
+initiate work-setup for proj login      ->  project name "login"
 ```
 
 ## Project name detection
@@ -54,8 +54,8 @@ If `tasks.md` already exists, do not modify it.
 
 If the user asked for a fuller setup (e.g., said "full setup" or "with docs"), offer to create:
 
-- `projects/<name>/README.md` — what this project is about, goals, completion criteria
-- `docs/DECISIONS.md` — record of design decisions made
+- `projects/<name>/README.md` - what this project is about, goals, completion criteria
+- `docs/DECISIONS.md` - record of design decisions made
 
 But only if the user explicitly wants them. Default is just the directory + tasks.md.
 
